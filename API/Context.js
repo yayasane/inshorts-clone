@@ -9,6 +9,7 @@ export const Context = ({ children }) => {
   const [category, setCategory] = useState('general')
   const [index, setIndex] = useState(1)
   const [source, setSource] = useState()
+  const [darkTheme, setDarkTheme] = useState(true)
 
   const fetchNews = async (reset = category) => {
     const { data } = await axios.get(getNewsAPI(reset))
@@ -46,6 +47,8 @@ export const Context = ({ children }) => {
         setCategory,
         category,
         setSource,
+        darkTheme,
+        setDarkTheme,
       }}
     >
       {children}

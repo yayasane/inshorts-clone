@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   View,
   Text,
@@ -9,10 +9,12 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native'
+import { NewsContext } from '../API/Context'
 
 const windowsWidth = Dimensions.get('window').width
 const windowsHeight = Dimensions.get('window').height
 const SingleNews = ({ item, index }) => {
+  const { darkTheme } = useContext(NewsContext)
   return (
     <View
       style={{
@@ -25,12 +27,21 @@ const SingleNews = ({ item, index }) => {
         source={{ uri: item.urlToImage }}
         style={{ height: '45%', resizeMode: 'cover', width: windowsWidth }}
       />
-      <View style={{ ...styles.description, backgroundColor: '#282C35' }}>
-        <Text style={{ ...styles.title, color: 'white' }}>{item.title}</Text>
-        <Text style={{ ...styles.content, color: 'white' }}>
+      <View
+        style={{
+          ...styles.description,
+          backgroundColor: darkTheme ? '#282C35' : 'white',
+        }}
+      >
+        <Text style={{ ...styles.title, color: darkTheme ? 'white' : 'black' }}>
+          {item.title}
+        </Text>
+        <Text
+          style={{ ...styles.content, color: darkTheme ? 'white' : 'black' }}
+        >
           {item.description}
         </Text>
-        <Text style={{ color: 'white' }}>
+        <Text style={{ color: darkTheme ? 'white' : 'black' }}>
           Short by <Text>{item.author ?? 'unknown'}</Text>
         </Text>
         <ImageBackground
