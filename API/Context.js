@@ -18,7 +18,7 @@ export const Context = ({ children }) => {
 
   useEffect(() => {
     fetchNews()
-  })
+  }, [category])
 
   return (
     <NewsContext.Provider value={{ news, index, setIndex, fetchNews }}>
